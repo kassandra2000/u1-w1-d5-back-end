@@ -3,7 +3,6 @@ import entities.Image;
 import entities.MultimediaElement;
 import entities.Video;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -25,15 +24,20 @@ public class Main {
         //array
         MultimediaElement[] arrayOfMultimediaElement = new MultimediaElement[5];
         AddMultimediaArray(arrayOfMultimediaElement);
-        System.out.println(Arrays.toString(arrayOfMultimediaElement));
+
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
     }
 
     public static void AddMultimediaArray(MultimediaElement[] arr) {
+        Scanner sc = new Scanner(System.in);
         for (int i = 0; i < arr.length; i++) {
             System.out.println("Scegli il tipo di file da inserire nel tuo player:");
 
             System.out.println("1. Immagine \n 2. Audio \n 3. Video");
-            Scanner sc = new Scanner(System.in);
             int choice = Integer.parseInt(sc.nextLine());
 
             switch (choice) {
@@ -69,13 +73,35 @@ public class Main {
                     i--;
                     break;
             }
+
+        }
+
+        for (int j = 0; j < arr.length; j++) {
+            System.out.println("Scegli l'oggetto da eseguire:");
+
+            System.out.println(STR."""
+1. \{arr[0].getTitle()}\s
+ 2. \{arr[1].getTitle()}\s
+ 3. \{arr[2].getTitle()}\s
+ 4. \{arr[3].getTitle()}\s
+ 5. \{arr[4].getTitle()}""");
+
+
+        int choice = Integer.parseInt(sc.nextLine());
+
+        if (arr[choice] instanceof AudioRecording) {
+            System.out.println("sono un audio");
+            ((AudioRecording) arr[choice]).play();
+        } else if (arr[choice] instanceof Video) {
+            System.out.println("sono un video");
+            ((Video) arr[choice]).play();
+        } else {
+            System.out.println("sono un immagine");
+            ((Image) arr[choice]).show();
+        }
         }
     }
 
-    public static void multimediaArray(MultimediaElement[] arr) {
-        for (int i = 0; i < arr.length ; i++) {
 
-        }
-    }
 }
 

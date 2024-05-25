@@ -55,4 +55,6 @@ public class MultimediaElement {
         this.brightness = brightness;
         return brightness;
     }
+
+
 }
